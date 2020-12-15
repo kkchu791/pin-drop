@@ -1,0 +1,17 @@
+.container {
+  border: 1px solid blue;
+  height: 100vh;
+}
+
+.button {
+  margin: 30px 0;
+}
+
+.overlay {
+  margin: 30px 0;
+  height: 800px;
+  width: 800px;
+  background: lightblue;
+  border: 1px solid blue;
+}
+
