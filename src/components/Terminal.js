@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState} from 'react';
+import { Canvas } from './Canvas';
 import { Button } from '@material-ui/core';
 import './Terminal.css';
 
 export const Terminal = () => {
+  const [isActive, setIsActive] = useState(false);
   return (
     <div className='container'>
       I am the Terminal
@@ -11,14 +13,15 @@ export const Terminal = () => {
         <Button
           variant="contained"
           color="primary"
+          onClick={() => setIsActive(!isActive)}
         >
-          I am the Button
+          {isActive ? 'inactivate': 'activate'}
         </Button>
       </div>
 
-      <div className='overlay'>
-        Overlay
-      </div>
+      <Canvas
+        isActive={isActive}
+      />
     </div>
   )
 }
