@@ -14,19 +14,14 @@ export const Canvas = ({
   ] = useCanvas();
 
   const handleCanvasClick = (evt) => {
-    // on each click get current mouse location 
-
     if (!isActive) {
       return;
     }
 
     const currentCoord = {
-      x: event.clientX,
-      y: event.clientY 
+      x: evt.clientX,
+      y: evt.clientY,
     };
-
-    console.log(currentCoord, 'currentCoord');
-    console.log(coordinates, 'coordinates');
   // add the newest mouse location to an array in state
     setCoordinates([...coordinates, currentCoord]);
   };
