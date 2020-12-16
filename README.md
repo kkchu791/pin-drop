@@ -1,3 +1,5 @@
-## starter kit
+## pin-drop
 
-a simple starter kit for cra with material design
+a simple pin drop/screenshot app  with material design
+
+https://pin-drop.netlify.app
