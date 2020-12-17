@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useCanvas } from '../hooks/useCanvas';
 import './Canvas.css';
 
 export const Canvas = ({
-  isActive
+  isActive,
+  getScreenshot,
+  children,
+  setIsActive,
+  setIsSideBarOpen,
+  setIsPinModalOpen,
 }) => {
   const [
     coordinates,
@@ -12,6 +17,12 @@ export const Canvas = ({
     canvasWidth,
     canvasHeight
   ] = useCanvas();
+
+  useEffect(() => {
+    if (coordinates.length > 0) {
+      getScreenshot();
+    }
+  }, [coordinates])
 
   const handleCanvasClick = (evt) => {
     if (!isActive) {
@@ -22,8 +33,12 @@ export const Canvas = ({
       x: evt.clientX,
       y: evt.clientY,
     };
-  // add the newest mouse location to an array in state
+    // add the newest mouse location to an array in state
     setCoordinates([...coordinates, currentCoord]);
+
+    setIsActive(false);
+    setIsSideBarOpen(true);
+    setIsPinModalOpen(false);
   };
 
   const handleClearCanvas = (evt) => {
@@ -32,17 +47,17 @@ export const Canvas = ({
 
   return (
     <div className='canvas-container'>
+      {children}
       <canvas 
-        className="App-canvas"
+        className="canvas"
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
         onClick={handleCanvasClick}
       />
-
-      <div className="button" >
-        <button onClick={handleClearCanvas}>CLEAR</button>
-      </div>
+      <button onClick={handleClearCanvas}>
+        Clear Canvas
+      </button>
     </div>
   )
 }

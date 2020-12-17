@@ -1,57 +1,60 @@
 import React, { useState} from 'react';
-import { Canvas } from './Canvas';
-import { Button } from '@material-ui/core';
 import './Terminal.css';
 import html2canvas from 'html2canvas';
-import { Modal } from '@material-ui/core';
-
+import { CommentButton } from './CommentButton';
+import { PinModal } from './PinModal';
+import { Sidebar } from './Sidebar';
+import { Canvas } from './Canvas';
+import { Chart } from './Chart';
 
 export const Terminal = () => {
   const [isActive, setIsActive] = useState(false);
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
+
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+
+  const [isPinModalOpen, setIsPinModalOpen] = useState(false);
 
   const getScreenshot = () => {
     html2canvas(document.body).then((canvas) => {
       var imageUrl = canvas.toDataURL();
-      setImage(imageUrl);
-     });
+      setImages([...images, imageUrl]);
+    });
+  }
+
+  const handlePinClick = () => {
+    setIsActive(true);
+    setIsSideBarOpen(false);
+    setIsPinModalOpen(true);
   }
 
   return (
     <div className='container'>
-      <Modal
-        open={image}
-        onClose={() => setImage(null)}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <div className='modal'>
-          <img className='image' src={image} alt="screenshot" />
-        </div>
-      </Modal>
-      <div className='button'>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setIsActive(!isActive)}
-        >
-          {isActive ? 'inactivate': 'activate'}
-        </Button>
-      </div>
+    
+      <CommentButton
+        onClick={() => setIsSideBarOpen(!isSideBarOpen)}
+      />
 
-      <div className='button'>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => getScreenshot()}
-        >
-         Take Screenshot
-        </Button>
-      </div>
+      <PinModal
+        isPinModalOpen={isPinModalOpen}
+      />
+
+      <Sidebar
+        isSideBarOpen={isSideBarOpen}
+        handlePinClick={handlePinClick}
+        images={images}
+        setImages={setImages}
+      />
 
       <Canvas
         isActive={isActive}
-      />
+        getScreenshot={getScreenshot}
+        setIsSideBarOpen={setIsSideBarOpen}
+        setIsActive={setIsActive}
+        setIsPinModalOpen={setIsPinModalOpen}
+      >
+        <Chart />
+      </Canvas>
     </div>
   )
 }

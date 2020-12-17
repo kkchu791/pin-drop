@@ -1,0 +1,26 @@
+.pin-modal {
+  width: 128px;
+  height: 120px;
+  position: absolute;
+  left: 45.61%;
+  right: 45.02%;
+  top: 3.42%;
+  bottom: 83.85%;
+
+  background: #333333;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.pin-modal-text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 27px;
+  color: #FFFFFF;
+  margin: 8px 0;
+}

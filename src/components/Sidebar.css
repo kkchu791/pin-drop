@@ -1,0 +1,53 @@
+
+.sidebar {
+  position: absolute;
+  right: 0;
+  width: 240px;
+  height: 100%;
+  background: #EFEFF2;
+  box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.25);
+  z-index: 98;
+}
+
+.sidebar-text{
+  margin: 20px 10px;
+}
+
+.pin-row {
+  display: flex;
+}
+
+.pin-button {
+  background: #4F4F4F;
+  border-radius: 6px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.pin-text{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  flex: 3;
+}
+
+.text {
+  padding: 4px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.screenshot {
+  border: 1px solid blue;
+  border-radius: 3px;
+  margin: 5px 0; 
+}
